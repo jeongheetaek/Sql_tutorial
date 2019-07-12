@@ -1,0 +1,43 @@
+Oracle Setup Tutorial.
+
+1. Pass - oracle
+2. Port Num - remember 8080
+3. Confirm the Setup - sqlplus system/oracle  - in Cmd
+
+접속 이름 - system
+사용자 이름 - system
+비밀번호 - oracle
+
+접속 이름 - scott
+사용자 이름 - scott
+비밀번호 - TIGER
+
+
+//////////////IN SYSTEM/////////////////
+
+-- USER 생성
+CREATE USER scott IDENTIFIED BY tiger;
+GRANT DBA TO scott;
+
+
+/////////////////////////IN SCOTT//////////////
+
+-- DDL
+CREATE TABLE BEPT
+( DEPTNO number(2) Constraint PK_DEPT Primary KEY, 
+  DNAME VARCHAR2 (30),
+  LOC VARCHAR2(20)
+);
+
+-- DML
+
+INSERT INTO BEPT VALUES(10,'ACCOUNTING', '강남');
+INSERT INTO BEPT(DEPTNO, DNAME) VALUES(20,'RESEARCH'); -- 두개의 컬럼에 넣으려면 두개의 인덱스를 먼저 설정해준다.
+INSERT INTO BEPT(DEPTNO, DNAME) VALUES(30,'TEST');
+INSERT INTO BEPT(DEPTNO, DNAME) VALUES(40,'TEST3');
+
+UPDATE BEPT
+SET LOC = '당산'
+WHERE DEPTNO = 30;
+
+DELETE BEPT WHERE DEPTNO = 40;
